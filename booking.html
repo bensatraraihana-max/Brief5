@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking - SpaceVoyager</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'space-dark': '#0a0a18',
+            'space-blue': '#1a1a2e',
+            'space-purple': '#16213e',
+            'neon-blue': '#0ea5e9',
+            'neon-purple': '#8b5cf6'
+          },
+          fontFamily: {
+            orbitron: ['Orbitron', 'sans-serif'],
+            exo: ['Exo 2', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0a0a18 20%, #1a1a2e 70%, #16213e 100%);
+      background-attachment: fixed;
+    }
+    .card {
+      background: rgba(26, 26, 46, 0.7);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+    }
+    .btn-gradient {
+      background: linear-gradient(to right, #0ea5e9, #8b5cf6);
+    }
+  </style>
+</head>
+
+<body class="text-white font-exo">
+  <!-- NAV -->
+  <nav class="bg-space-dark/80 backdrop-blur-md border-b border-neon-blue/20 sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple flex items-center justify-center">
+          <i class="fas fa-rocket text-white"></i>
+        </div>
+        <a href="index.html" class="font-orbitron text-xl font-bold">SpaceVoyager</a>
+      </div>
+      <div class="space-x-8 hidden md:flex">
+        <a href="index.html" class="hover:text-neon-blue">Home</a>
+        <a href="destinations.html" class="hover:text-neon-blue">Destinations</a>
+        <a href="booking.html" class="text-neon-blue font-bold">Booking</a>
+        <a href="about.html" class="hover:text-neon-blue">About</a>
+        <a href="login.html" class="hover:text-neon-blue">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="container mx-auto px-4 py-12">
+    <h1 class="text-center font-orbitron text-4xl md:text-5xl mb-4 text-neon-blue">Book Your Space Journey</h1>
+    <p class="text-center text-gray-300 mb-10">Begin your adventure to the stars — fill out the form below to reserve your spot.</p>
+
+    <form id="bookingForm" class="card p-8 max-w-4xl mx-auto">
+      <h2 class="font-orbitron text-2xl mb-4">Journey Details</h2>
+
+      <!-- Destination -->
+      <label class="block mb-2">Destination</label>
+      <select id="destination" class="w-full p-3 rounded bg-space-purple/40 border border-neon-blue/40 mb-4 text-white"></select>
+
+      <!-- Date -->
+      <label class="block mb-2">Departure Date</label>
+      <input type="date" id="departureDate" class="w-full p-3 rounded bg-space-purple/40 border border-neon-blue/40 mb-4 text-white" min="" />
+
+      <!-- Passengers -->
+      <label class="block mb-2">Number of Passengers</label>
+      <div class="flex space-x-4 mb-4">
+        <label><input type="radio" name="passengers" value="1" checked> Solo Traveler</label>
+        <label><input type="radio" name="passengers" value="2"> Couple (2)</label>
+        <label><input type="radio" name="passengers" value="3"> Group (3-6)</label>
+      </div>
+
+      <!-- Accommodation -->
+      <label class="block mb-2">Accommodation Type</label>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="p-4 border rounded-lg hover:border-neon-blue cursor-pointer" data-type="standard">
+          <h3 class="font-orbitron text-neon-blue mb-2">Standard Cabin</h3>
+          <p class="text-sm text-gray-400">Comfortable private quarters with basic amenities</p>
+        </div>
+        <div class="p-4 border rounded-lg hover:border-neon-blue cursor-pointer" data-type="luxury">
+          <h3 class="font-orbitron text-neon-blue mb-2">Luxury Suite</h3>
+          <p class="text-sm text-gray-400">Premium suite with panoramic viewports</p>
+        </div>
+        <div class="p-4 border rounded-lg hover:border-neon-blue cursor-pointer" data-type="zero-g">
+          <h3 class="font-orbitron text-neon-blue mb-2">Zero-G Pod</h3>
+          <p class="text-sm text-gray-400">Zero-gravity advanced accommodation</p>
+        </div>
+      </div>
+
+      <!-- Personal Info -->
+      <h2 class="font-orbitron text-2xl mb-4">Personal Information</h2>
+      <div class="grid md:grid-cols-2 gap-4 mb-4">
+        <input id="firstName" placeholder="First Name" class="p-3 rounded bg-space-purple/40 border border-neon-blue/40" required />
+        <input id="lastName" placeholder="Last Name" class="p-3 rounded bg-space-purple/40 border border-neon-blue/40" required />
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 mb-4">
+        <input id="email" type="email" placeholder="Email Address" class="p-3 rounded bg-space-purple/40 border border-neon-blue/40" required />
+        <input id="phone" type="tel" placeholder="Phone Number" class="p-3 rounded bg-space-purple/40 border border-neon-blue/40" required />
+      </div>
+
+      <textarea id="requirements" placeholder="Any special requirements..." class="w-full p-3 rounded bg-space-purple/40 border border-neon-blue/40 mb-6"></textarea>
+
+      <div class="flex flex-col sm:flex-row justify-between gap-4">
+        <button type="button" id="addPassenger" class="w-full sm:w-auto px-6 py-3 rounded btn-gradient font-bold">Add Passenger</button>
+        <button type="submit" class="w-full sm:w-auto px-6 py-3 rounded btn-gradient font-bold">Confirm Booking</button>
+      </div>
+
+      <p class="text-xs text-gray-400 mt-4 text-center">
+        By confirming, you agree to our <a href="#" class="text-neon-blue">Terms of Service</a> and <a href="#" class="text-neon-blue">Space Travel Agreement</a>.
+      </p>
+    </form>
+  </main>
+
+  <script>
+    // === Load destinations dynamically from JSON ===
+    fetch('destinations.json')
+      .then(res => res.json())
+      .then(data => {
+        const select = document.getElementById('destination');
+        data.destinations.forEach(d => {
+          const option = document.createElement('option');
+          option.value = d.id;
+          option.textContent = `${d.name} - ${d.price.toLocaleString()} ${d.currency}`;
+          select.appendChild(option);
+        });
+      });
+
+    // === Set min date (future only) ===
+    const dateInput = document.getElementById('departureDate');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+
+    // === Form Submission ===
+    const form = document.getElementById('bookingForm');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const booking = {
+        id: Date.now(),
+        destination: document.getElementById('destination').value,
+        date: dateInput.value,
+        name: document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        requirements: document.getElementById('requirements').value
+      };
+
+      let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+      bookings.push(booking);
+      localStorage.setItem('bookings', JSON.stringify(bookings));
+
+      alert('✅ Booking Confirmed! Your ticket is being generated.');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
